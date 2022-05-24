@@ -3,7 +3,7 @@ import Stock from "./Stock";
 
 function StockContainer({stocks, onAddStock}) {
 
-  const stockCards = stocks.map(stock => <Stock {...stock} onAddStock={onAddStock} />);
+  const stockCards = stocks.map(stock => <Stock {...stock} onClickStock={onAddStock} />);
 
   return (
     <div>

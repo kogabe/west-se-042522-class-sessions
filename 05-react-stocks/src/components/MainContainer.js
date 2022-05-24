@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 function MainContainer() {
 
   const [stocksArr, setStocksArr] = useState([])
+  const [portfolio, setPortfolio] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
@@ -15,8 +16,13 @@ function MainContainer() {
   }, [])
 
   const addToPortfolio = id => {
-    console.log('id: ', id);
+    const stockToAdd = stocksArr.find(stock => stock.id === id)
+    setPortfolio([...portfolio, stockToAdd])
+  }
 
+  const removeFromPortfolio = id => {
+    const filteredPortfolio = portfolio.filter(stock => stock.id !== id)
+    setPortfolio(filteredPortfolio)
   }
   
   return (
@@ -27,7 +33,7 @@ function MainContainer() {
           <StockContainer stocks={stocksArr} onAddStock={addToPortfolio}/>
         </div>
         <div className="col-4">
-          <PortfolioContainer />
+          <PortfolioContainer stocks={portfolio} onRemoveStock={removeFromPortfolio}/>
         </div>
       </div>
     </div>
