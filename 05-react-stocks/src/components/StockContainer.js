@@ -1,9 +1,9 @@
 import React from "react";
 import Stock from "./Stock";
 
-function StockContainer({stocks}) {
+function StockContainer({stocks, onAddStock}) {
 
-  const stockCards = stocks.map(stock => <Stock {...stock}/>)
+  const stockCards = stocks.map(stock => <Stock {...stock} onAddStock={onAddStock} />);
 
   return (
     <div>

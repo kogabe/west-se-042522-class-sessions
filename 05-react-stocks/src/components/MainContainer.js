@@ -13,13 +13,18 @@ function MainContainer() {
       // .then(dataArr => setStocksArr(dataArr))
       .then(setStocksArr)
   }, [])
+
+  const addToPortfolio = id => {
+    console.log('id: ', id);
+
+  }
   
   return (
     <div>
       <SearchBar />
       <div className="row">
         <div className="col-8">
-          <StockContainer stocks={stocksArr}/>
+          <StockContainer stocks={stocksArr} onAddStock={addToPortfolio}/>
         </div>
         <div className="col-4">
           <PortfolioContainer />
