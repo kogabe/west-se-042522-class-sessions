@@ -7,6 +7,7 @@ function MainContainer() {
 
   const [stocksArr, setStocksArr] = useState([])
   const [portfolio, setPortfolio] = useState([])
+  const [sortBy, setSortBy] = useState("Alphabetically")
 
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
@@ -24,13 +25,24 @@ function MainContainer() {
     const filteredPortfolio = portfolio.filter(stock => stock.id !== id)
     setPortfolio(filteredPortfolio)
   }
+
+  const sortedStocks = [...stocksArr].sort((stockA, stockB) => {
+    if (sortBy === "Alphabetically") {
+      return stockA.ticker.localeCompare(stockB.ticker)
+    } else {
+      return stockA.price - stockB.price
+    }
+  })
   
   return (
     <div>
-      <SearchBar />
+      <SearchBar 
+        onChangeSort={setSortBy}
+        sortBy={sortBy}
+      />
       <div className="row">
         <div className="col-8">
-          <StockContainer stocks={stocksArr} onAddStock={addToPortfolio}/>
+          <StockContainer stocks={sortedStocks} onAddStock={addToPortfolio}/>
         </div>
         <div className="col-4">
           <PortfolioContainer stocks={portfolio} onRemoveStock={removeFromPortfolio}/>
