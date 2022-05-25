@@ -23,10 +23,15 @@ function InventoryManager() {
         }
     }
 
+    const removeFromReorders = id => {
+        const filteredReorders = reorders.filter(roi => roi.id !== id)
+        setReorders(filteredReorders)
+    }
+
     return(
         <div className="container">
             <CurrentInventoryList inventory={inventory} onAddClick={addToReorders}/>
-            <ReorderInventoryList reorders={reorders}/>
+            <ReorderInventoryList reorders={reorders} onRemoveClick={removeFromReorders}/>
         </div>
     );
 }

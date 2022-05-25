@@ -1,13 +1,13 @@
 import React from 'react'
 import InventoryItemCard from './InventoryItemCard'
 
-function ReorderInventoryList({reorders}) {
+function ReorderInventoryList({reorders, onRemoveClick}) {
 
     const inventoryCards = reorders.map(invObj => (
         <InventoryItemCard 
           key={invObj.id} 
           {...invObj} 
-          
+          handleClick={onRemoveClick}
         />
         )
       )

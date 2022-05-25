@@ -7,7 +7,7 @@ function CurrentInventoryList({ inventory, onAddClick }) {
       <InventoryItemCard 
         key={invObj.id} 
         {...invObj} 
-        onAddClick={onAddClick}
+        handleClick={onAddClick}
       />
       )
     )
