@@ -1,13 +1,14 @@
 import React from 'react'
 import InventoryItemCard from './InventoryItemCard'
 
-function CurrentInventoryList({ inventory, onAddClick }) {
+function CurrentInventoryList({ inventory, onAddClick, onDelete }) {
 
     const inventoryCards = inventory.map(invObj => (
       <InventoryItemCard 
         key={invObj.id} 
         {...invObj} 
         handleClick={onAddClick}
+        onDelete={onDelete}
       />
       )
     )
