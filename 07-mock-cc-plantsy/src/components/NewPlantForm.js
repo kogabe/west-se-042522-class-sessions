@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
 function NewPlantForm({ onAddPlant }) {
-
+  
+  // this obj can be used both to set the initial value in state but also to reset the form
+  // after submission
   const initialPlantFormData = {
     name: '',
     image: '',
@@ -11,7 +13,6 @@ function NewPlantForm({ onAddPlant }) {
   const [plantFormData, setPlantFormData] = useState(initialPlantFormData)
 
   function handleChange(e){
-    // console.dir(e.target)
     const {name, value} = e.target
     setPlantFormData({
       ...plantFormData,
@@ -33,17 +34,22 @@ function NewPlantForm({ onAddPlant }) {
       },
       body: JSON.stringify({
         ...plantFormData,
+        // HTML inputs alway return their values as strings, so if we want to keep price a number
+        // we need to convert (coerce) it into a float (number with decimal places)
         price: parseFloat(plantFormData.price)
       })
     }
     fetch("http://localhost:6001/plants", config)
       .then(res => res.json())
       .then(newPlant => {
+        // call the callback function, sending the newPlant object up to PlantPage
+        // pessimitic rendering
         onAddPlant(newPlant)
+        // reset the form
         setPlantFormData(initialPlantFormData)
       })
 
-    // onAddPlant(plantFormData)
+    // onAddPlant(plantFormData) // this would be optimistic rendering, not a great idea here
   }
 
   return (

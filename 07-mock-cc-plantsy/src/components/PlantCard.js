@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-function PlantCard({plant, onUpdatePlant}) {
+function PlantCard({plant, onUpdatePlant, onDeletePlant}) {
 
   const {id, name, image, price} = plant
 
   const [inStock, setInStock] = useState(true)
   const [updatedPrice, setUpdatedPrice] = useState(price)
-
 
   function handlePriceFormSubmit(e){
     e.preventDefault()
@@ -22,6 +21,13 @@ function PlantCard({plant, onUpdatePlant}) {
      .then(onUpdatePlant)
   }
 
+  function handleDelete(){
+    // delete from the backend (the repsonse is just and empty {})
+    fetch(`http://localhost:6001/plants/${id}`, {method: "DELETE"})
+    // send the id up to PlantPage so we can remove the plant from state
+    onDeletePlant(id)
+  }
+
   return (
     <li className="card">
       <img src={image} alt={name} />
@@ -32,6 +38,7 @@ function PlantCard({plant, onUpdatePlant}) {
       ) : (
         <button onClick={() => setInStock(!inStock)} >Out of Stock</button>
       )}
+      <button className="danger" onClick={handleDelete} >Delete</button>
       <form onSubmit={handlePriceFormSubmit}>
         <input
           type="number"
