@@ -16,11 +16,15 @@ function PlantPage() {
   
 
   }, [])
+
+  function handleAddPlant(newPlant){
+    setPlants([...plants, newPlant])
+  }
   
 
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onAddPlant={handleAddPlant}/>
       <Search />
       <PlantList plants={plants}/>
     </main>
