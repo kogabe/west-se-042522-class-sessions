@@ -1,8 +1,8 @@
 import React from 'react'
 
-function InventoryItemCard({id, image, name, price}) {
+function InventoryItemCard({id, image, name, price, onAddClick}) {
     return(
-        <div className="card" onClick={() => console.log("Clicking the item...")}>
+        <div className="card" onClick={() => onAddClick(id)}>
             <img src={image} alt={name}></img>
             <h3>{name}</h3>
             <h4>${price}</h4>

@@ -1,9 +1,16 @@
 import React from 'react'
 import InventoryItemCard from './InventoryItemCard'
 
-function CurrentInventoryList({ inventory }) {
+function CurrentInventoryList({ inventory, onAddClick }) {
 
-    const inventoryCards = inventory.map(invObj => <InventoryItemCard key={invObj.id} {...invObj} />)
+    const inventoryCards = inventory.map(invObj => (
+      <InventoryItemCard 
+        key={invObj.id} 
+        {...invObj} 
+        onAddClick={onAddClick}
+      />
+      )
+    )
 
     return( 
         <div id="current-inventory">
