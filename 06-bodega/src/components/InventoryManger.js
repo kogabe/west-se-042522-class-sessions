@@ -31,6 +31,8 @@ function InventoryManager() {
 
     const handleDelete = (e, id) => {
         e.stopPropagation()
+        // the DELETE fetch could also happen on the component with the event, but you'd still
+        // need to pass data up here to filter the arrays
        fetch(baseURL + `/${id}`, {method: 'DELETE'})
     //    const filteredReorders = reorders.filter(roi => roi.id !== id)
     //    setReorders(filteredReorders)
@@ -40,6 +42,7 @@ function InventoryManager() {
         removeItemFromArray(inventory, id, setInventory)
     }
 
+    // make code more DRY by abstracting reusable logic into helper function
     function removeItemFromArray(array, id, setterFn){
         const filteredArr = array.filter(item => item.id !== id)
         setterFn(filteredArr)
