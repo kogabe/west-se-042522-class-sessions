@@ -11,11 +11,13 @@ class FunnyBots
       @@bots << self
     end
   
-    def random_quote
-      self.quotes.sample
+    def random_quote # an instance method looks like a regular method definition
+      self.quotes.sample # self always gets its reference from the context in which it appears
+      # here, it is in an instance method, so self refers to an instance of FunnyBots
     end
   
-    def self.bots
+    def self.bots # a class method is prefixed by self.
+        # the enclosing context of self here is the class FunnyBots, so self refers to the class itself
       @@bots
     end
   end
@@ -60,11 +62,11 @@ class FunnyBots
     #   @@styles << style
     end
   
-    def tire_size
-      self.tire.to_f
+    def tire_size # a custom reader can allow us to apply some formatting rules
+      self.tire.to_s # here, we'd like to be able to get the tire size as a string, but keep it as an integer in the original 
     end
 
-    def tire_size=(size)
+    def tire_size=(size) # a custom writer can allow us to add some validation logic to user input
         self.tire=size.clamp(4..20)
     end
   
