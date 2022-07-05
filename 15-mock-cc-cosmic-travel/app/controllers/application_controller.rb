@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
 
-    wrap_parameters false
+    wrap_parameters false # This disables the default parameter wrapping which bundles all incoming request parameters into a hash under a key matching the controller they're routed to; basically adding a layer of protection which we're not using.  The default also causes an 'Unpermitted parameter' error in the server logs.
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_reponse
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
