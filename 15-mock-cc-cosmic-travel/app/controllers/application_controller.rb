@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
 
+    wrap_parameters false
+
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_reponse
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
