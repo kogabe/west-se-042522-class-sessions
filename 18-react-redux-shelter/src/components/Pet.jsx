@@ -1,14 +1,24 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { adoptPet } from '../features/pets/petsSlice';
+// import { useDispatch } from 'react-redux';
+// import { adoptPet } from '../features/pets/petsSlice';
+import { useUpdatePetsMutation } from '../app/services/petsApi'
 
 
 export default function Pet({pet}) {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
+
+    const [updatePet, {isLoading}] = useUpdatePetsMutation()
     
     function handleAdoptedClick() {
-      dispatch(adoptPet(pet.id))
+    //   dispatch(adoptPet(pet.id))
+        updatePet({id: pet.id, isAdopted: true})
+
     }
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+    
     return (
     <div className="card" data-testid="pet">
       <div className="content">

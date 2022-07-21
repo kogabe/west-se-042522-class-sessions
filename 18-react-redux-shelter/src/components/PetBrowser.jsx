@@ -1,14 +1,20 @@
 import React from 'react'
 import Pet from './Pet'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
+import { useFetchPetsQuery } from '../app/services/petsApi'
 
 export default function PetBrowser() {
 
-    const pets = useSelector(state => state.pets)
+    // const pets = useSelector(state => state.pets)
+    const { data=[], isFetching } = useFetchPetsQuery()
 
-  const petCards = pets.map((pet) => (
+  const petCards = data.map((pet) => (
     <Pet key={pet.id} pet={pet} />
   ));
+
+  if (isFetching) {
+      return <h1>Loading ...</h1>
+  }
 
   return (
     <>
