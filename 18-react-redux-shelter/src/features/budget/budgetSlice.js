@@ -13,6 +13,9 @@ const budgetSlice = createSlice({
         },
         // immer lib takes a state mutation and does state cloning instead
         // toolkit creates an actionCreate fn to match the reducer fn
+
+        // for this reducer, we want a payload, so we need both state & action args
+        // values passed to actionCreator fn will become the payload
         subtractAmount(state, action) {
             state.value -= action.payload
         }

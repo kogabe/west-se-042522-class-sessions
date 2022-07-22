@@ -2,6 +2,7 @@
 // import reactLogo from './assets/react.svg'
 import Budget from './components/Budget'
 import PetBrowser from './components/PetBrowser'
+import DogBrowser from './components/DogBrowser'
 import './App.css'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <h1>Redux Shelter</h1>
         <Budget />
         <PetBrowser />
+        <DogBrowser />
       </header>
     </div>
   )

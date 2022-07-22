@@ -142,7 +142,7 @@
       "age": 5,
       "weight": 1,
       "name": "Mickey",
-      "isAdopted": false
+      "isAdopted": true
     },
     {
       "id": "cf8c0815-ec1a-41a2-806b-5df40c0fff99",
@@ -304,7 +304,7 @@
       "age": 4,
       "weight": 4,
       "name": "Flurry",
-      "isAdopted": false
+      "isAdopted": true
     },
     {
       "id": "6c8e937e-3104-4ceb-a3c7-8cdd6ee90082",
